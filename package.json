@@ -23,6 +23,7 @@
     "@fontsource-variable/urbanist": "^5.0.19",
     "@fontsource/barlow": "^5.0.8",
     "astro": "^4.2.6",
+    "astro-expressive-code": "^0.32.2",
     "astro-icon": "^1.0.3",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",

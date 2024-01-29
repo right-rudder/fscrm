@@ -11,8 +11,10 @@ import tasks from './src/utils/tasks';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
 import { ANALYTICS, SITE } from './src/utils/config.ts';
 import starlight from "@astrojs/starlight";
+import expressiveCode from "astro-expressive-code";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const whenExternalScripts = (items = []) => ANALYTICS.vendors.googleAnalytics.id && ANALYTICS.vendors.googleAnalytics.partytown ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,43 +22,33 @@ export default defineConfig({
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
   output: 'static',
-  integrations: [
-    tailwind(
-      { applyBaseStyles: false },
-    ), 
-    sitemap(), 
-    mdx(), 
-    icon(
-      {
-      include: 
-        { tabler: ['*'],
-          'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database']
-        }
-      },
-    ),
-    ...whenExternalScripts(
-      () => partytown({
-        config: { forward: ['dataLayer.push']},
-      })
-    ), 
-    compress(
-      {
-      CSS: true,
-      HTML: 
-        { 'html-minifier-terser': {removeAttributeQuotes: false} },
-      Image: false,
-      JavaScript: true,
-      SVG: false,
-      Logger: 1
+  integrations: [tailwind({
+    applyBaseStyles: false
+  }), sitemap(), starlight({
+    title: 'Flight School CRM Documentation'
+  }), 
+  expressiveCode(),
+  mdx(), icon({
+    include: {
+      tabler: ['*'],
+      'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database']
+    }
+  }), ...whenExternalScripts(() => partytown({
+    config: {
+      forward: ['dataLayer.push']
+    }
+  })), compress({
+    CSS: true,
+    HTML: {
+      'html-minifier-terser': {
+        removeAttributeQuotes: false
       }
-    ), 
-    tasks(), 
-    starlight(
-      {
-        title: 'FLight School CRM Documentation',
-      },
-    ),
-  ],
+    },
+    Image: false,
+    JavaScript: true,
+    SVG: false,
+    Logger: 1
+  }), tasks(), ],
   image: {
     service: squooshImageService()
   },
