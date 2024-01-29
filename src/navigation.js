@@ -3,7 +3,7 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Home',
+      text: 'Pricing',
       href: getPermalink('/')
     },
     {
@@ -23,6 +23,27 @@ export const headerData = {
         },
         {
           text: 'Email Marketing',
+          href: getPermalink('/')
+        },
+      ],
+    },
+    {
+      text: 'Guides',
+      links: [
+        {
+          text: 'What is a CRM?',
+          href: getPermalink('/')
+        },
+        {
+          text: 'Flight School Marketing System',
+          href: getPermalink('/')
+        },
+        {
+          text: 'Using Automation',
+          href: getPermalink('/')
+        },
+        {
+          text: 'Running a Marketing Campaign',
           href: getPermalink('/')
         },
       ],
@@ -52,16 +73,15 @@ export const headerData = {
           href: getPermalink('/')
         },
         {
-          text: 'Right Rudder Marketing',
+          text: 'Blog',
           href: getPermalink('/')
         },
         {
-          text: 'Blog',
+          text: 'Contact Us',
           href: getPermalink('/')
         },
       ],
     },
-
   ],
   // links: [
   //   {
