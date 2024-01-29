@@ -20,29 +20,43 @@ export default defineConfig({
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
   output: 'static',
-  integrations: [tailwind({
-    applyBaseStyles: false
-  }), sitemap(), mdx(), icon({
-    include: {
-      tabler: ['*'],
-      'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database']
-    }
-  }), ...whenExternalScripts(() => partytown({
-    config: {
-      forward: ['dataLayer.push']
-    }
-  })), compress({
-    CSS: true,
-    HTML: {
-      'html-minifier-terser': {
-        removeAttributeQuotes: false
+  integrations: [
+    tailwind(
+      { applyBaseStyles: false },
+    ), 
+    sitemap(), 
+    mdx(), 
+    icon(
+      {
+      include: 
+        { tabler: ['*'],
+          'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database']
+        }
+      },
+    ),
+    ...whenExternalScripts(
+      () => partytown({
+        config: { forward: ['dataLayer.push']},
+      })
+    ), 
+    compress(
+      {
+      CSS: true,
+      HTML: 
+        { 'html-minifier-terser': {removeAttributeQuotes: false} },
+      Image: false,
+      JavaScript: true,
+      SVG: false,
+      Logger: 1
       }
-    },
-    Image: false,
-    JavaScript: true,
-    SVG: false,
-    Logger: 1
-  }), tasks(), starlight()],
+    ), 
+    tasks(), 
+    starlight(
+      {
+        title: 'FLight School CRM Documentation',
+      },
+    ),
+  ],
   image: {
     service: squooshImageService()
   },
