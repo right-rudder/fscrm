@@ -53,11 +53,11 @@ export const headerData = {
       links: [
         {
           text: 'FAQ',
-          href: getPermalink('/')
+          href:'https://docs.flightschoolcrm.com/getting-started/faq/'
         },
         {
           text: 'Documentation',
-          href: getPermalink('/')
+          href: 'https://docs.flightschoolcrm.com/getting-started/quick-start/'
         },
         {
           text: 'Support Ticket',
